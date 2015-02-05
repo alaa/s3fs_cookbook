@@ -1,0 +1,20 @@
+---
+driver:
+  name: docker
+  privileged: true
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: debian-7
+  - name: ubuntu-14.10
+
+suites:
+  - name: default
+    run_list:
+      - recipe[s3fs_cookbook::install]
+      - recipe[s3fs_cookbook::mount]
+    attributes:
+      s3fs_cookbook:
+        user: "kitchen"
